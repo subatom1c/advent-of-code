@@ -3,23 +3,23 @@ import java.util.*;
 
 class Day09 {
 
-    public static int sol_1 = 0;
-    public static int sol_2 = 0;
+    public static long sol_1 = 0;
+    public static long sol_2 = 0;
 
     static class Coordinates {
-        int col;
-        int row;
+        long col;
+        long row;
 
-        Coordinates(int row, int col) {
+        Coordinates(long row, long col) {
             this.row = row;
             this.col = col;
         }
 
 
-        public int getRow() {
+        public long getRow() {
             return this.row;
         }
-        public int getCol() {
+        public long getCol() {
             return this.col;
         }
 
@@ -43,7 +43,7 @@ class Day09 {
         String line;
         List<Coordinates> matrix = new ArrayList<>();
 
-        int max_area = 0;
+        long max_area = 0;
 
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
@@ -51,8 +51,8 @@ class Day09 {
                 break;
 
             String[] parts = line.split(",");
-            int x = Integer.parseInt(parts[0].trim());
-            int y = Integer.parseInt(parts[1].trim());
+            long x = Long.parseLong(parts[0].trim());
+            long y = Long.parseLong(parts[1].trim());
             
             Coordinates cord = new Coordinates(x, y);
             matrix.add(cord);
@@ -73,9 +73,11 @@ class Day09 {
         System.out.println("Solution 2: " + sol_2);
     }
 
-    public static int calculate_area(Coordinates first, Coordinates second) {
-        int height = Math.abs(first.getCol() - second.getCol());
-        int width = Math.abs(first.getRow() - second.getRow());
+    public static long calculate_area(Coordinates first, Coordinates second) {
+        // We need to sum 1 because its inclusive
+        long height = 1 + Math.abs(first.getCol() - second.getCol());
+        long width = 1 + Math.abs(first.getRow() - second.getRow());
+
         return height * width;
     }
 
